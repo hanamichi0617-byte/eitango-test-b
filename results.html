@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成績ページ｜ビジネス英単語テスト B</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: #f5f7fa;
+    color: #2d3748;
+    line-height: 1.6;
+  }
+  .container { max-width: 560px; margin: 0 auto; padding: 16px; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+  }
+  h1 { font-size: 20px; color: #e8590c; margin-bottom: 4px; }
+  h2 { font-size: 16px; margin-bottom: 12px; }
+  .sub { color: #718096; font-size: 13px; margin-bottom: 8px; }
+  .btn {
+    display: block; width: 100%;
+    font-size: 16px; font-weight: bold;
+    padding: 14px; border: none; border-radius: 12px;
+    cursor: pointer; text-align: center; text-decoration: none;
+    background: #e8590c; color: #fff;
+  }
+  .loading { text-align: center; color: #718096; padding: 30px 0; }
+
+  /* 週間グラフ */
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 180px;
+    padding-top: 24px;
+  }
+  .chart .col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; }
+  .chart .bar-area { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; position: relative; }
+  .chart .bar {
+    width: 70%;
+    max-width: 36px;
+    background: linear-gradient(180deg, #ff8c42, #e8590c);
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    min-height: 3px;
+  }
+  .chart .bar.empty { background: #edf2f7; }
+  .chart .score-label {
+    position: absolute;
+    top: -22px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px; font-weight: bold; color: #e8590c;
+    white-space: nowrap;
+  }
+  .chart .count-label {
+    position: absolute;
+    bottom: 2px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px; color: #fff;
+    white-space: nowrap;
+  }
+  .chart .day-label { font-size: 11px; color: #718096; margin-top: 4px; }
+  .chart .day-label.today { color: #e8590c; font-weight: bold; }
+  .chart-note { font-size: 12px; color: #a0aec0; margin-top: 8px; text-align: center; }
+
+  /* フィルタ */
+  select {
+    font-size: 14px; padding: 8px 12px;
+    border: 2px solid #cbd5e0; border-radius: 10px;
+    background: #fff; margin-bottom: 4px; width: 100%;
+  }
+  .filter-row { display: flex; gap: 12px; }
+  .filter-row > div { flex: 1; min-width: 0; }
+  .filter-label { font-size: 12px; color: #718096; margin-bottom: 4px; }
+  .range-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: bold;
+    color: #c44a08; background: #fff4ec;
+    border-radius: 6px; padding: 1px 8px; margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* 履歴 */
+  .attempt {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .attempt .head { display: flex; justify-content: space-between; align-items: baseline; }
+  .attempt .when { font-size: 13px; color: #718096; }
+  .attempt .who { font-weight: bold; font-size: 15px; }
+  .attempt .score { font-size: 24px; font-weight: bold; color: #e8590c; }
+  .attempt .score.perfect { color: #38a169; }
+  .attempt .meta { font-size: 13px; color: #4a5568; margin-top: 2px; }
+  .attempt details { margin-top: 6px; }
+  .attempt summary { font-size: 13px; color: #e53e3e; cursor: pointer; }
+  .attempt summary.all-ok { color: #38a169; list-style: none; cursor: default; }
+  .wrong-list { font-size: 13px; margin-top: 6px; padding-left: 4px; }
+  .wrong-list div { padding: 3px 0; border-bottom: 1px dashed #edf2f7; }
+  .wrong-list .w { font-weight: bold; color: #38a169; }
+  .wrong-list .c { color: #e53e3e; }
+  .empty-msg { text-align: center; color: #718096; padding: 20px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>📊 成績ページ</h1>
+    <div class="sub">ビジネス英単語テスト B（0451〜500）の記録</div>
+    <a class="btn" href="./index.html">テストを受ける</a>
+  </div>
+
+  <div class="card">
+    <h2>しぼり込み</h2>
+    <div class="filter-row">
+      <div>
+        <div class="filter-label">名前</div>
+        <select id="name-filter"><option value="">全員</option></select>
+      </div>
+      <div>
+        <div class="filter-label">範囲</div>
+        <select id="range-filter">
+          <option value="">すべての範囲</option>
+          <option value="0451-500">0451〜500（ahead〜private）</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>直近1週間の成績（その日のベストスコア）</h2>
+    <div id="chart-box" class="loading">読み込み中…</div>
+    <div class="chart-note">バーの中の「×n」はその日の受験回数</div>
+  </div>
+
+  <div class="card">
+    <h2>受験履歴</h2>
+    <div id="history" class="loading">読み込み中…</div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const app = initializeApp({
+  projectId: "eitango-test-9617-64eb4",
+  appId: "1:338226814189:web:19cb6337da48f580af80e4",
+  apiKey: "AIzaSyBMm7ZAW3lWtHDQr9ACSP16OcgRmMOEM2A",
+  authDomain: "eitango-test-9617-64eb4.firebaseapp.com"
+});
+const db = getFirestore(app);
+
+let allResults = [];
+
+function dayKey(d) {
+  return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+}
+
+function fmtWhen(ts) {
+  const d = new Date(ts);
+  return (d.getMonth() + 1) + "/" + d.getDate() + " " +
+    d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+}
+
+function fmtDur(sec) {
+  return Math.floor(sec / 60) + "分" + String(sec % 60).padStart(2, "0") + "秒";
+}
+
+// 範囲の短い表示
+function rangeShort(r) {
+  return "0451〜500";
+}
+
+function renderChart(results) {
+  const box = document.getElementById("chart-box");
+  // 直近7日分の日付（今日を右端に）
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    days.push(d);
+  }
+  const byDay = {};
+  results.forEach(r => {
+    const k = dayKey(new Date(r.ts));
+    if (!byDay[k]) byDay[k] = [];
+    byDay[k].push(r);
+  });
+
+  const chart = document.createElement("div");
+  chart.className = "chart";
+  days.forEach((d, idx) => {
+    const k = dayKey(d);
+    const list = byDay[k] || [];
+    const best = list.length ? Math.max(...list.map(r => r.score)) : null;
+
+    const col = document.createElement("div");
+    col.className = "col";
+    const area = document.createElement("div");
+    area.className = "bar-area";
+    const bar = document.createElement("div");
+    if (best === null) {
+      bar.className = "bar empty";
+      bar.style.height = "3px";
+    } else {
+      bar.className = "bar";
+      bar.style.height = Math.max(best, 4) + "%";
+      const s = document.createElement("div");
+      s.className = "score-label";
+      s.textContent = best + "点";
+      bar.appendChild(s);
+      if (list.length > 1) {
+        const c = document.createElement("div");
+        c.className = "count-label";
+        c.textContent = "×" + list.length;
+        bar.appendChild(c);
+      }
+    }
+    area.appendChild(bar);
+    col.appendChild(area);
+    const label = document.createElement("div");
+    label.className = "day-label" + (idx === 6 ? " today" : "");
+    label.textContent = idx === 6 ? "今日" : (d.getMonth() + 1) + "/" + d.getDate();
+    col.appendChild(label);
+    chart.appendChild(col);
+  });
+  box.className = "";
+  box.innerHTML = "";
+  box.appendChild(chart);
+}
+
+function renderHistory(results) {
+  const box = document.getElementById("history");
+  box.className = "";
+  box.innerHTML = "";
+  if (results.length === 0) {
+    box.innerHTML = '<div class="empty-msg">まだ記録がありません。テストを受けると、ここに結果が表示されます。</div>';
+    return;
+  }
+  results.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "attempt";
+
+    const head = document.createElement("div");
+    head.className = "head";
+    const left = document.createElement("div");
+    left.innerHTML = '<span class="who"></span> <span class="when"></span><span class="range-badge"></span>';
+    left.querySelector(".who").textContent = r.name;
+    left.querySelector(".when").textContent = fmtWhen(r.ts);
+    left.querySelector(".range-badge").textContent = rangeShort(r);
+    const score = document.createElement("div");
+    score.className = "score" + (r.score === 100 ? " perfect" : "");
+    score.textContent = r.score + "点";
+    head.appendChild(left);
+    head.appendChild(score);
+    div.appendChild(head);
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = "正解 " + r.correct + "/" + r.total + " ／ " + fmtDur(r.durationSec || 0) + (r.timedOut ? "（時間切れ）" : "");
+    div.appendChild(meta);
+
+    const wrongs = r.wrongs || [];
+    if (wrongs.length === 0) {
+      const ok = document.createElement("div");
+      ok.innerHTML = '<summary class="all-ok"></summary>';
+      ok.firstChild.textContent = "🎉 全問正解！";
+      div.appendChild(ok);
+    } else {
+      const det = document.createElement("details");
+      const sum = document.createElement("summary");
+      sum.textContent = "間違えた問題（" + wrongs.length + "問）を見る";
+      det.appendChild(sum);
+      const list = document.createElement("div");
+      list.className = "wrong-list";
+      wrongs.forEach(w => {
+        const row = document.createElement("div");
+        const wEl = document.createElement("span"); wEl.className = "w"; wEl.textContent = w.word;
+        const cEl = document.createElement("span"); cEl.className = "c";
+        cEl.textContent = w.chosen ? w.chosen : "未回答";
+        row.appendChild(document.createTextNode("正解 "));
+        row.appendChild(wEl);
+        row.appendChild(document.createTextNode(" ← 答えた: "));
+        row.appendChild(cEl);
+        list.appendChild(row);
+      });
+      det.appendChild(list);
+      div.appendChild(det);
+    }
+    box.appendChild(div);
+  });
+}
+
+function applyFilter() {
+  const name = document.getElementById("name-filter").value;
+  const range = document.getElementById("range-filter").value;
+  const filtered = allResults.filter(r =>
+    (!name || r.name === name) &&
+    (!range || (r.range || "1-50") === range)
+  );
+  renderChart(filtered);
+  renderHistory(filtered);
+}
+
+async function load() {
+  try {
+    const snap = await getDocs(query(collection(db, "results_b"), orderBy("ts", "desc"), limit(500)));
+    allResults = snap.docs.map(d => d.data());
+
+    // 名前フィルタの選択肢を作る
+    const names = [...new Set(allResults.map(r => r.name))];
+    const sel = document.getElementById("name-filter");
+    names.forEach(n => {
+      const o = document.createElement("option");
+      o.value = n; o.textContent = n;
+      sel.appendChild(o);
+    });
+    sel.onchange = applyFilter;
+    document.getElementById("range-filter").onchange = applyFilter;
+
+    applyFilter();
+  } catch (e) {
+    document.getElementById("chart-box").textContent = "読み込みに失敗しました。電波の良いところで再読み込みしてください。";
+    document.getElementById("history").textContent = "";
+    console.error(e);
+  }
+}
+load();
+</script>
+</body>
+</html>

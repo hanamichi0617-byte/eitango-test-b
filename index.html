@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ビジネス英単語テスト B（0451〜500）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: #f5f7fa;
+    color: #2d3748;
+    line-height: 1.6;
+  }
+  .container { max-width: 560px; margin: 0 auto; padding: 16px; min-height: 100%; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+  }
+  h1 { font-size: 22px; color: #e8590c; margin-bottom: 8px; }
+  h2 { font-size: 18px; margin-bottom: 12px; }
+  .sub { color: #718096; font-size: 14px; margin-bottom: 16px; }
+  .rule-list { font-size: 14px; color: #4a5568; padding-left: 20px; margin-bottom: 20px; }
+  .rule-list li { margin-bottom: 6px; }
+  input[type="text"] {
+    width: 100%;
+    font-size: 18px;
+    padding: 12px 14px;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: #e8590c; }
+  .btn {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+  .btn-primary { background: #e8590c; color: #fff; }
+  .btn-primary:active { background: #c44a08; }
+  .btn-line { background: #06c755; color: #fff; margin-top: 10px; }
+  .btn-gray { background: #e2e8f0; color: #2d3748; margin-top: 10px; }
+  .btn:disabled { background: #cbd5e0; color: #fff; cursor: default; }
+
+  /* 範囲えらび */
+  .range-label { font-size: 14px; font-weight: bold; color: #4a5568; margin-bottom: 8px; }
+  .range-group { display: grid; gap: 10px; margin-bottom: 20px; }
+  .range-opt {
+    font-size: 17px;
+    padding: 14px 16px;
+    border: 2px solid #cbd5e0;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-weight: bold;
+    color: #2d3748;
+  }
+  .range-opt .small { display: block; font-size: 12px; font-weight: normal; color: #718096; margin-top: 2px; }
+  .range-opt.selected { border-color: #e8590c; background: #fff4ec; color: #e8590c; }
+  .range-opt.selected .small { color: #c44a08; }
+
+  /* テスト画面 */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .qcount { font-size: 15px; font-weight: bold; color: #4a5568; }
+  .timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2d3748;
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    font-variant-numeric: tabular-nums;
+  }
+  .timer.warn { color: #e53e3e; }
+  .progress-track {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .progress-fill { height: 100%; background: #e8590c; border-radius: 4px; width: 0%; transition: width 0.2s; }
+  .sentence { font-size: 20px; font-weight: bold; margin-bottom: 8px; word-break: break-word; }
+  .blank { color: #e8590c; letter-spacing: 1px; }
+  .ja { font-size: 15px; color: #718096; margin-bottom: 20px; }
+  .choices { display: grid; gap: 10px; }
+  .choice {
+    font-size: 18px;
+    padding: 14px 16px;
+    border: 2px solid #cbd5e0;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+  }
+  .choice.selected {
+    border-color: #e8590c;
+    background: #fff4ec;
+    font-weight: bold;
+  }
+  .nav { display: flex; gap: 10px; margin-top: 20px; }
+  .nav .btn { font-size: 16px; padding: 14px; }
+  .nav .btn-back { background: #e2e8f0; color: #2d3748; margin-top: 0; }
+  .unanswered-note { font-size: 13px; color: #e53e3e; margin-top: 10px; text-align: center; }
+
+  /* 結果画面 */
+  .score-big { font-size: 52px; font-weight: bold; color: #e8590c; text-align: center; }
+  .score-detail { text-align: center; color: #4a5568; font-size: 16px; margin-bottom: 16px; }
+  .review-item {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .review-item.ok { background: #f0fff4; border: 1px solid #9ae6b4; }
+  .review-item.ng { background: #fff5f5; border: 1px solid #feb2b2; }
+  .review-item .en { font-weight: bold; font-size: 15px; }
+  .review-item .mark { font-weight: bold; margin-right: 6px; }
+  .review-item.ok .mark { color: #38a169; }
+  .review-item.ng .mark { color: #e53e3e; }
+  .review-item .ans-line { margin-top: 4px; }
+  .review-item .correct-w { color: #38a169; font-weight: bold; }
+  .review-item .wrong-w { color: #e53e3e; text-decoration: line-through; }
+  .copied-msg { text-align: center; color: #38a169; font-size: 14px; margin-top: 8px; min-height: 20px; }
+  .save-status { text-align: center; font-size: 14px; margin-bottom: 12px; color: #718096; min-height: 20px; }
+  .save-status.ok { color: #38a169; }
+  .save-status.err { color: #e53e3e; }
+  .retry-mini {
+    font-size: 13px; padding: 4px 12px; margin-left: 6px;
+    border: 1px solid #e53e3e; border-radius: 8px;
+    background: #fff; color: #e53e3e; cursor: pointer;
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- スタート画面 -->
+  <div id="screen-start">
+    <div class="card">
+      <h1>ビジネス英単語テスト B</h1>
+      <div class="sub">頻出単語 0451〜500番（ahead 〜 private）／50問・4択・30分</div>
+      <ul class="rule-list">
+        <li>文に当てはまる英単語を4つの中から選んでね</li>
+        <li><b>制限時間は30分</b>。時間になると自動的に終了します</li>
+        <li>答え合わせは全部解き終わってから表示されます</li>
+        <li>終わったら「結果をLINEで送る」ボタンで先生に結果を送ってね</li>
+        <li>何度でも挑戦できます（問題の順番は毎回変わります）</li>
+      </ul>
+      <input type="text" id="student-name" placeholder="名前を入力してね" autocomplete="off">
+      <div class="range-label">出題する範囲をえらんでね</div>
+      <div class="range-group" id="range-group">
+        <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private</span></button>
+      </div>
+      <button class="btn btn-primary" id="btn-start">テストを始める</button>
+      <a class="btn btn-gray" href="./results.html">📊 これまでの成績を見る</a>
+    </div>
+  </div>
+
+  <!-- テスト画面 -->
+  <div id="screen-quiz" class="hidden">
+    <div class="topbar">
+      <div class="qcount" id="qcount">第1問 / 50</div>
+      <div class="timer" id="timer">30:00</div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+    <div class="card">
+      <div class="sentence" id="sentence"></div>
+      <div class="ja" id="ja"></div>
+      <div class="choices" id="choices"></div>
+      <div class="nav">
+        <button class="btn btn-back" id="btn-back">← 前へ</button>
+        <button class="btn btn-primary" id="btn-next">次へ →</button>
+      </div>
+      <div class="unanswered-note" id="unanswered-note"></div>
+    </div>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="screen-result" class="hidden">
+    <div class="card">
+      <h2 id="result-title">テスト結果</h2>
+      <div class="score-big" id="score-pct"></div>
+      <div class="score-detail" id="score-detail"></div>
+      <div class="save-status" id="save-status"></div>
+      <a class="btn btn-gray" href="./results.html">📊 これまでの成績を見る</a>
+      <a class="btn btn-line" id="btn-line" target="_blank" rel="noopener">結果をLINEでも知らせる</a>
+      <button class="btn btn-gray" id="btn-copy">結果をコピーする</button>
+      <div class="copied-msg" id="copied-msg"></div>
+      <button class="btn btn-primary" id="btn-retry" style="margin-top:10px;">もう一度挑戦する</button>
+    </div>
+    <div class="card">
+      <h2>答え合わせ</h2>
+      <div id="review"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const TIME_LIMIT_MIN = 30;
+
+// 問題データ（s: 英文 / ja: 日本語訳 / a: 正解 / d: 誤答の選択肢）
+const QUESTION_BANK = {
+ "0451-500": {
+  label: "0451〜500（ahead〜private）",
+  questions: [
+  { s: "Mr. Ohmae will decide whether to move ___ with production.", ja: "大前氏は生産を前に進めるかどうかを決めます。", a: "ahead", d: ["nearby", "finally", "highly"] },
+  { s: "I'm ___ about the possibility of working here.", ja: "私はここで働ける可能性にわくわくしています。", a: "excited", d: ["convenient", "unique", "senior"] },
+  { s: "Thursday is quite ___ for me, as I will be working from home that day.", ja: "木曜日は在宅勤務の予定なので、私にとって都合がよいです。", a: "convenient", d: ["excited", "similar", "legal"] },
+  { s: "Mr. Srour's flight arrived too late for him to attend the ___.", ja: "スルー氏のフライトは到着が遅れ、歓迎会に出席できませんでした。", a: "reception", d: ["division", "operation", "procedure"] },
+  { s: "We ___ to requests within one business day.", ja: "当社は要望に1営業日以内に対応します。", a: "respond", d: ["remain", "inquire", "reschedule"] },
+  { s: "All passengers should be aware of the ___ changes for bus line 75.", ja: "乗客は、バス75番路線の一時的な変更にご注意ください。", a: "temporary", d: ["senior", "multiple", "entire"] },
+  { s: "It is ___ advisable that you schedule your event well ahead of time.", ja: "したがって、イベントは早めに予定を立てることをお勧めします。", a: "therefore", d: ["finally", "nearly", "definitely"] },
+  { s: "The biggest ___ to this deep fryer is that it's a snap to clean.", ja: "このフライヤーの最大の利点は、掃除が簡単なことです。", a: "advantage", d: ["dish", "range", "period"] },
+  { s: "Don's Café uses only local fruits and vegetables in its carefully prepared ___.", ja: "ドンズ・カフェは丁寧に作る料理に地元の果物と野菜だけを使います。", a: "dishes", d: ["ranges", "periods", "divisions"] },
+  { s: "We will repaint the damaged areas and then clean up the ___.", ja: "傷んだ部分を塗り直して、内部を清掃します。", a: "interior", d: ["exterior", "district", "garage"] },
+  { s: "I'm arranging the annual awards ___ for my company.", ja: "私は会社の年次表彰の宴会の手配をしています。", a: "banquet", d: ["operation", "division", "anniversary"] },
+  { s: "The Hidden Side of Architecture ___ hits television screens this week.", ja: "『建築の隠れた一面』が今週ついにテレビで放映されます。", a: "finally", d: ["highly", "nearly", "definitely"] },
+  { s: "Our tour guides are fully licensed and ___ experienced.", ja: "当社のツアーガイドは完全な資格を持ち、非常に経験豊富です。", a: "highly", d: ["nearly", "finally", "ahead"] },
+  { s: "I couldn't find a parking space ___, so I had to park several blocks away.", ja: "近くに駐車スペースが見つからず、数ブロック離れた所に停めました。", a: "nearby", d: ["nearly", "ahead", "highly"] },
+  { s: "The position requires a minimum of a bachelor's ___ and two years of experience.", ja: "その職には学士の学位と2年の経験が最低限必要です。", a: "degree", d: ["range", "task", "period"] },
+  { s: "Sabon Salon had over 500 visitors in its first week of ___.", ja: "サボン・サロンは営業初週に500人以上の来客がありました。", a: "operation", d: ["reception", "division", "control"] },
+  { s: "Here's a list of ___ I've assigned to everyone.", ja: "これがみんなに割り当てた作業のリストです。", a: "tasks", d: ["ranges", "degrees", "periods"] },
+  { s: "Questwiz, the library's newest database, contains a wide ___ of resource materials.", ja: "図書館の最新データベースには、幅広い範囲の資料があります。", a: "range", d: ["task", "degree", "division"] },
+  { s: "We do a first-class job at reasonable prices that will ___ your budget.", ja: "当社は予算に合う手頃な価格で一流の仕事をします。", a: "fit", d: ["remain", "respond", "miss"] },
+  { s: "Isn't the city ___ supposed to give a speech at 1:00 P.M.?", ja: "市長は午後1時にスピーチをすることになっていませんか。", a: "mayor", d: ["crew", "division", "reception"] },
+  { s: "The contract clearly ___ that the work will be completed by May 10.", ja: "契約には、作業が5月10日までに完了すると明記されています。", a: "states", d: ["remains", "responds", "inquires"] },
+  { s: "You will be prompted to create your own ___ 4-digit card PIN.", ja: "あなた自身の固有の4桁のカード暗証番号を作るよう求められます。", a: "unique", d: ["similar", "standard", "multiple"] },
+  { s: "Most visitors say that their ___ feature of Jodi's Haven is the private beach.", ja: "多くの訪問者は、お気に入りの特徴はプライベートビーチだと言います。", a: "favorite", d: ["senior", "entire", "similar"] },
+  { s: "Although I am ___ using technology, not all clients are.", ja: "私はテクノロジーを使うのは快適ですが、すべての顧客がそうではありません。", a: "comfortable", d: ["convenient", "positive", "clear"] },
+  { s: "My ___ just finished installing the windows on your house.", ja: "うちの作業班が、あなたの家の窓の設置を終えたところです。", a: "crew", d: ["division", "mayor", "reception"] },
+  { s: "Parking is available in a nearby city ___.", ja: "駐車は近くの市営駐車場を利用できます。", a: "garage", d: ["district", "trail", "interior"] },
+  { s: "He asked me to try to ___ our meeting for October 25.", ja: "彼は会議を10月25日に変更してみてほしいと頼みました。", a: "reschedule", d: ["respond", "inquire", "remain"] },
+  { s: "It's ___ impossible to find a time when the whole team is free.", ja: "チーム全員の予定が空いている時間を見つけるのはほとんど不可能です。", a: "nearly", d: ["highly", "finally", "ahead"] },
+  { s: "Would you prefer renting an office in the financial ___ or the historic one?", ja: "金融地区と歴史地区のどちらにオフィスを借りたいですか。", a: "district", d: ["garage", "range", "division"] },
+  { s: "She started a campaign to restore some of our city's ___ landmarks.", ja: "彼女は市の歴史的な名所のいくつかを修復する運動を始めました。", a: "historic", d: ["unique", "standard", "senior"] },
+  { s: "Last month we received numerous ___ comments from customers on our blog.", ja: "先月、ブログで顧客から多くの好意的なコメントをいただきました。", a: "positive", d: ["similar", "clear", "legal"] },
+  { s: "The cafeteria will ___ closed until the water has been turned on again.", ja: "カフェテリアは水が再び出るまで閉まったままです。", a: "remain", d: ["respond", "state", "fit"] },
+  { s: "Our ___ delivery service will get your order to you in three to five days.", ja: "標準配送サービスでは、ご注文は3〜5日でお届けします。", a: "standard", d: ["unique", "senior", "multiple"] },
+  { s: "Hikers are invited to visit the information center for ___ maps of Far Valley Park.", ja: "ハイカーはファーバレー公園の登山道の地図を入手しに案内所へどうぞ。", a: "trail", d: ["garage", "district", "division"] },
+  { s: "Inventory ___ and warehousing strategies fall within the manager's responsibilities.", ja: "在庫管理と倉庫管理の戦略は、管理者の責任範囲に含まれます。", a: "control", d: ["operation", "division", "procedure"] },
+  { s: "The Tokyo ___ handles product distribution and customer service for the company.", ja: "東京部門が会社の製品流通と顧客サービスを担当します。", a: "division", d: ["operation", "reception", "range"] },
+  { s: "All new contracts must be read carefully by at least two ___ managers.", ja: "新しい契約は、少なくとも2人の上級管理職が慎重に読まなければなりません。", a: "senior", d: ["multiple", "similar", "entire"] },
+  { s: "The rent is pretty ___ for all four locations, so price isn't an issue.", ja: "家賃は4か所すべてでかなり似ているので、価格は問題になりません。", a: "similar", d: ["unique", "standard", "positive"] },
+  { s: "Items from ___ orders may be combined in the same package.", ja: "複数の注文の商品は、同じ荷物にまとめられる場合があります。", a: "multiple", d: ["senior", "entire", "similar"] },
+  { s: "The restaurant must remain open and be well staffed during the conference ___.", ja: "レストランは会議期間中、開店し十分な人員を配置しなければなりません。", a: "period", d: ["range", "degree", "task"] },
+  { s: "All e-mail messages regarding ___ issues should be stored in a separate folder.", ja: "法的な問題に関するすべてのメールは別のフォルダに保存すべきです。", a: "legal", d: ["positive", "private", "clear"] },
+  { s: "Unfortunately, I had a business trip and ___ the second session of the June class.", ja: "あいにく出張があり、6月のクラスの2回目を欠席しました。", a: "missed", d: ["remained", "responded", "stated"] },
+  { s: "Some residents ___ whether we would consider opening a store there.", ja: "一部の住民は、そこに店を開く考えがあるか問い合わせました。", a: "inquired", d: ["rescheduled", "responded", "remained"] },
+  { s: "At the staff meeting last week, I discussed the new ___ with all the teams.", ja: "先週のスタッフ会議で、新しい手順を全チームと話し合いました。", a: "procedures", d: ["tasks", "divisions", "ranges"] },
+  { s: "The hotel rooms themselves were a ___ small, but they were comfortable and clean.", ja: "ホテルの部屋自体は少し小さかったですが、快適で清潔でした。", a: "bit", d: ["degree", "range", "period"] },
+  { s: "Since I just hired six new associates, I am ___ going to need a new space.", ja: "6人の新しい社員を雇ったばかりなので、確実に新しいスペースが必要になります。", a: "definitely", d: ["nearly", "highly", "finally"] },
+  { s: "Mr. Chan had the highest sales figures out of the ___ team last month.", ja: "先月、チャン氏はチーム全体で最高の売上数字を出しました。", a: "entire", d: ["senior", "multiple", "similar"] },
+  { s: "For Delento Bakery's tenth ___, it gave away free cookies to the first 50 customers.", ja: "デレント・ベーカリーは10周年記念日に、先着50名に無料のクッキーを配りました。", a: "anniversary", d: ["reception", "banquet", "period"] },
+  { s: "I was very impressed by the ___ advice I received on choosing a carpet.", ja: "カーペット選びについて受けた明快な助言にとても感心しました。", a: "clear", d: ["positive", "similar", "legal"] },
+  { s: "Does Dr. Allen work at the hospital or at a ___ practice?", ja: "アレン先生は病院に勤めていますか、それとも個人で開業していますか。", a: "private", d: ["legal", "senior", "standard"] }
+  ]
+ }
+};
+let currentRange = "0451-500";
+let QUESTIONS = QUESTION_BANK[currentRange].questions;
+
+let order = [];        // 出題順（QUESTIONSのインデックス）
+let choiceSets = [];   // 各問題のシャッフル済み選択肢
+let answers = [];      // 生徒の回答（選んだ単語）
+let current = 0;
+let deadline = 0;
+let timerId = null;
+let startTime = 0;
+let studentName = "";
+let finished = false;
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function $(id) { return document.getElementById(id); }
+
+function show(screen) {
+  $("screen-start").classList.add("hidden");
+  $("screen-quiz").classList.add("hidden");
+  $("screen-result").classList.add("hidden");
+  $(screen).classList.remove("hidden");
+  window.scrollTo(0, 0);
+}
+
+function startTest() {
+  const name = $("student-name").value.trim();
+  if (!name) {
+    alert("名前を入力してね！");
+    return;
+  }
+  studentName = name;
+  QUESTIONS = QUESTION_BANK[currentRange].questions;
+  order = shuffle(QUESTIONS.map((_, i) => i));
+  choiceSets = order.map(qi => shuffle([QUESTIONS[qi].a, ...QUESTIONS[qi].d]));
+  answers = new Array(order.length).fill(null);
+  current = 0;
+  finished = false;
+  startTime = Date.now();
+  deadline = startTime + TIME_LIMIT_MIN * 60 * 1000;
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tick, 250);
+  tick();
+  renderQuestion();
+  show("screen-quiz");
+}
+
+function tick() {
+  const remain = Math.max(0, deadline - Date.now());
+  const m = Math.floor(remain / 60000);
+  const s = Math.floor((remain % 60000) / 1000);
+  const el = $("timer");
+  el.textContent = String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+  el.classList.toggle("warn", remain < 5 * 60 * 1000);
+  if (remain <= 0 && !finished) {
+    finishTest(true);
+  }
+}
+
+function renderQuestion() {
+  const qi = order[current];
+  const q = QUESTIONS[qi];
+  $("qcount").textContent = "第" + (current + 1) + "問 / " + order.length;
+  $("progress").style.width = ((current) / order.length * 100) + "%";
+  $("sentence").innerHTML = q.s.replace("___", '<span class="blank">（　　　）</span>');
+  $("ja").textContent = "（" + q.ja + "）";
+
+  const box = $("choices");
+  box.innerHTML = "";
+  choiceSets[current].forEach(word => {
+    const b = document.createElement("button");
+    b.className = "choice" + (answers[current] === word ? " selected" : "");
+    b.textContent = word;
+    b.onclick = () => {
+      answers[current] = word;
+      // 最後の問題以外は自動で次へ
+      if (current < order.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        renderQuestion();
+      }
+    };
+    box.appendChild(b);
+  });
+
+  $("btn-back").style.visibility = current === 0 ? "hidden" : "visible";
+  const next = $("btn-next");
+  if (current === order.length - 1) {
+    next.textContent = "テストを終了する";
+  } else {
+    next.textContent = "次へ →";
+  }
+  const unanswered = answers.filter(a => a === null).length;
+  $("unanswered-note").textContent =
+    (current === order.length - 1 && unanswered > 0)
+      ? "未回答が " + unanswered + " 問あります（前へ戻って確認できます）"
+      : "";
+}
+
+function goNext() {
+  if (current === order.length - 1) {
+    const unanswered = answers.filter(a => a === null).length;
+    if (unanswered > 0) {
+      if (!confirm("未回答が " + unanswered + " 問あります。終了しますか？")) return;
+    } else {
+      if (!confirm("テストを終了して答え合わせをしますか？")) return;
+    }
+    finishTest(false);
+  } else {
+    current++;
+    renderQuestion();
+  }
+}
+
+function goBack() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+}
+
+function fmtDuration(ms) {
+  const m = Math.floor(ms / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  return m + "分" + String(s).padStart(2, "0") + "秒";
+}
+
+function finishTest(byTimeout) {
+  finished = true;
+  if (timerId) clearInterval(timerId);
+  const usedMs = Math.min(Date.now() - startTime, TIME_LIMIT_MIN * 60 * 1000);
+
+  let correct = 0;
+  const wrongs = [];
+  order.forEach((qi, i) => {
+    const q = QUESTIONS[qi];
+    if (answers[i] === q.a) {
+      correct++;
+    } else {
+      wrongs.push({ no: i + 1, q: q, chosen: answers[i] });
+    }
+  });
+  const total = order.length;
+  const pct = Math.round(correct / total * 100);
+
+  $("result-title").textContent = byTimeout ? "時間切れ！テスト終了" : "テスト結果";
+  $("score-pct").textContent = pct + "点";
+  $("score-detail").textContent =
+    studentName + " さん ／ 正解 " + correct + " / " + total + " 問 ／ 所要時間 " + fmtDuration(usedMs);
+
+  // データベースに結果を保存
+  saveToDb({
+    name: studentName,
+    range: currentRange,
+    rangeLabel: QUESTION_BANK[currentRange].label,
+    score: pct,
+    correct: correct,
+    total: total,
+    durationSec: Math.round(usedMs / 1000),
+    timedOut: !!byTimeout,
+    ts: Date.now(),
+    wrongs: wrongs.map(w => ({ no: w.no, word: w.q.a, chosen: w.chosen === null ? "" : w.chosen }))
+  });
+
+  // 答え合わせ一覧
+  const review = $("review");
+  review.innerHTML = "";
+  order.forEach((qi, i) => {
+    const q = QUESTIONS[qi];
+    const ok = answers[i] === q.a;
+    const div = document.createElement("div");
+    div.className = "review-item " + (ok ? "ok" : "ng");
+    const sentence = q.s.replace("___", "【 " + q.a + " 】");
+    let html = '<span class="mark">' + (ok ? "○" : "×") + "</span>"
+      + "第" + (i + 1) + '問　<span class="en">' + sentence + "</span>"
+      + '<div class="ja" style="margin:2px 0 0;">（' + q.ja + "）</div>";
+    if (!ok) {
+      html += '<div class="ans-line">正解: <span class="correct-w">' + q.a + "</span>　あなたの答え: "
+        + '<span class="wrong-w">' + (answers[i] === null ? "（未回答）" : answers[i]) + "</span></div>";
+    }
+    div.innerHTML = html;
+    review.appendChild(div);
+  });
+
+  // LINE送信用テキスト
+  const now = new Date();
+  const dateStr = now.getFullYear() + "/" + (now.getMonth() + 1) + "/" + now.getDate()
+    + " " + now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0");
+  let text = "【英単語テスト結果】\n"
+    + "名前: " + studentName + "\n"
+    + "範囲: " + QUESTION_BANK[currentRange].label + "\n"
+    + "得点: " + pct + "点（" + correct + "/" + total + "問正解）\n"
+    + "所要時間: " + fmtDuration(usedMs) + (byTimeout ? "（時間切れ）" : "") + "\n"
+    + "実施日時: " + dateStr + "\n";
+  if (wrongs.length === 0) {
+    text += "全問正解！🎉";
+  } else {
+    text += "── 間違えた問題 ──\n";
+    wrongs.forEach(w => {
+      text += "第" + w.no + "問 正解:" + w.q.a + "（答え:" + (w.chosen === null ? "未回答" : w.chosen) + "）\n";
+    });
+  }
+  text += "\n📊 成績ページ: https://hanamichi0617-byte.github.io/eitango-test-b/results.html";
+
+  $("btn-line").href = "https://line.me/R/share?text=" + encodeURIComponent(text);
+  $("btn-copy").onclick = () => {
+    const done = () => {
+      $("copied-msg").textContent = "コピーしました！LINEに貼り付けて送ってね";
+      setTimeout(() => { $("copied-msg").textContent = ""; }, 3000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+      fallbackCopy(text, done);
+    }
+  };
+
+  show("screen-result");
+}
+
+function saveToDb(payload) {
+  const el = $("save-status");
+  el.className = "save-status";
+  el.textContent = "結果を保存中…";
+  let tries = 0;
+  const attempt = () => {
+    // Firebase SDK（モジュール）の読み込み完了を待つ
+    if (!window.__saveResult) {
+      if (++tries > 50) { fail(); return; }
+      setTimeout(attempt, 200);
+      return;
+    }
+    const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 15000));
+    Promise.race([window.__saveResult(payload), timeout]).then(() => {
+      el.className = "save-status ok";
+      el.textContent = "✓ 結果を保存しました（成績ページで見られます）";
+    }).catch(fail);
+  };
+  const fail = () => {
+    el.className = "save-status err";
+    el.textContent = "保存に失敗しました。";
+    const b = document.createElement("button");
+    b.textContent = "再試行";
+    b.className = "retry-mini";
+    b.onclick = () => saveToDb(payload);
+    el.appendChild(b);
+  };
+  attempt();
+}
+
+function fallbackCopy(text, done) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+$("range-group").querySelectorAll(".range-opt").forEach(btn => {
+  btn.onclick = () => {
+    currentRange = btn.dataset.range;
+    $("range-group").querySelectorAll(".range-opt").forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+  };
+});
+
+$("btn-start").onclick = startTest;
+$("btn-next").onclick = goNext;
+$("btn-back").onclick = goBack;
+$("btn-retry").onclick = () => {
+  show("screen-start");
+};
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const app = initializeApp({
+  projectId: "eitango-test-9617-64eb4",
+  appId: "1:338226814189:web:19cb6337da48f580af80e4",
+  apiKey: "AIzaSyBMm7ZAW3lWtHDQr9ACSP16OcgRmMOEM2A",
+  authDomain: "eitango-test-9617-64eb4.firebaseapp.com"
+});
+const db = getFirestore(app);
+window.__saveResult = (data) => addDoc(collection(db, "results_b"), { ...data, createdAt: serverTimestamp() });
+</script>
+</body>
+</html>

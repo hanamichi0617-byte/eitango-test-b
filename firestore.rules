@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // テスト結果（アプリA・B共通の検証ロジック）: 追加・閲覧のみ許可、改ざん不可
+    function validResult() {
+      return request.resource.data.keys().hasAll(['name', 'score', 'correct', 'total', 'ts'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 30
+        && request.resource.data.score is number
+        && request.resource.data.correct is number
+        && request.resource.data.total is number
+        && request.resource.data.ts is number;
+    }
+    match /results/{doc} {
+      allow read: if true;
+      allow create: if validResult();
+      allow update, delete: if false;
+    }
+    match /results_b/{doc} {
+      allow read: if true;
+      allow create: if validResult();
+      allow update, delete: if false;
+    }
+  }
+}
