@@ -161,10 +161,10 @@
   <div id="screen-start">
     <div class="card">
       <h1>ビジネス英単語テスト B</h1>
-      <div class="sub">頻出単語 0451〜500番（ahead 〜 private）／50問・4択・30分</div>
+      <div class="sub">頻出ビジネス英単語の4択テスト／範囲を選んで挑戦</div>
       <ul class="rule-list">
         <li>文に当てはまる英単語を4つの中から選んでね</li>
-        <li><b>制限時間は30分</b>。時間になると自動的に終了します</li>
+        <li><b>制限時間</b>内に解いてね（範囲によって時間が違います）。時間になると自動的に終了します</li>
         <li>答え合わせは全部解き終わってから表示されます</li>
         <li>終わったら「結果をLINEで送る」ボタンで先生に結果を送ってね</li>
         <li>何度でも挑戦できます（問題の順番は毎回変わります）</li>
@@ -172,7 +172,8 @@
       <input type="text" id="student-name" placeholder="名前を入力してね" autocomplete="off">
       <div class="range-label">出題する範囲をえらんでね</div>
       <div class="range-group" id="range-group">
-        <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private</span></button>
+        <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private ／ 50問・30分</span></button>
+        <button class="range-opt" data-range="1571-1580">複合名詞（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
       </div>
       <button class="btn btn-primary" id="btn-start">テストを始める</button>
       <a class="btn btn-gray" href="./results.html">📊 これまでの成績を見る</a>
@@ -220,12 +221,13 @@
 </div>
 
 <script>
-const TIME_LIMIT_MIN = 30;
+let TIME_LIMIT_MIN = 30;
 
 // 問題データ（s: 英文 / ja: 日本語訳 / a: 正解 / d: 誤答の選択肢）
 const QUESTION_BANK = {
  "0451-500": {
   label: "0451〜500（ahead〜private）",
+  timeMin: 30,
   questions: [
   { s: "Mr. Ohmae will decide whether to move ___ with production.", ja: "大前氏は生産を前に進めるかどうかを決めます。", a: "ahead", d: ["nearby", "finally", "highly"] },
   { s: "I'm ___ about the possibility of working here.", ja: "私はここで働ける可能性にわくわくしています。", a: "excited", d: ["convenient", "unique", "senior"] },
@@ -278,6 +280,22 @@ const QUESTION_BANK = {
   { s: "I was very impressed by the ___ advice I received on choosing a carpet.", ja: "カーペット選びについて受けた明快な助言にとても感心しました。", a: "clear", d: ["positive", "similar", "legal"] },
   { s: "Does Dr. Allen work at the hospital or at a ___ practice?", ja: "アレン先生は病院に勤めていますか、それとも個人で開業していますか。", a: "private", d: ["legal", "senior", "standard"] }
   ]
+ },
+ "1571-1580": {
+  label: "1571〜1580（複合名詞）",
+  timeMin: 10,
+  questions: [
+  { s: "Did you get a chance to write the ___ for your team members?", ja: "チームメンバーの勤務評定を書く機会はありましたか。", a: "performance review", d: ["press conference", "product line", "quality control"] },
+  { s: "Are you ready for our company's upcoming ___?", ja: "わが社の今度の記者会見の準備はできていますか。", a: "press conference", d: ["performance review", "quarterly report", "public relations"] },
+  { s: "Attached to this e-mail is the report on the initial reviews of Uwezo's ___ from the fashion show.", ja: "添付したのは、ファッションショーでのUwezo社の製品ラインの初期評価の報告書です。", a: "product line", d: ["raw material", "purchase order", "quality control"] },
+  { s: "Next on the agenda, I want to let you know about a great ___ opportunity.", ja: "次の議題として、すばらしい専門能力開発の機会についてお知らせします。", a: "professional development", d: ["public relations", "performance review", "press conference"] },
+  { s: "All communications must be approved by the ___ director before they can be shared externally.", ja: "すべての連絡は、外部に共有する前に広報部長の承認を得る必要があります。", a: "public relations", d: ["public transportation", "professional development", "quality control"] },
+  { s: "He takes ___ to work every day.", ja: "彼は毎日、通勤に公共交通機関を利用しています。", a: "public transportation", d: ["public relations", "purchase order", "raw material"] },
+  { s: "Mr. Sorya handles all ___ himself unless special approvals are needed.", ja: "ソーリャ氏は、特別な承認が必要でない限り、すべての購入注文を自分で処理します。", a: "purchase order", d: ["quarterly report", "product line", "raw material"] },
+  { s: "Your call may be recorded, and the recording could be used for ___ or training purposes.", ja: "お電話は録音される場合があり、その録音は品質管理や研修目的で使用されることがあります。", a: "quality control", d: ["quarterly report", "performance review", "purchase order"] },
+  { s: "There was a presentation on the ___ at the meeting.", ja: "会議で四半期報告についてのプレゼンテーションがありました。", a: "quarterly report", d: ["quality control", "press conference", "performance review"] },
+  { s: "Wool can be purchased from our farm store either as ___ or as yarn that we process on-site.", ja: "羊毛は当店で原材料として、または当社が店内で加工する糸として購入できます。", a: "raw material", d: ["product line", "purchase order", "public transportation"] }
+  ]
  }
 };
 let currentRange = "0451-500";
@@ -320,6 +338,7 @@ function startTest() {
   }
   studentName = name;
   QUESTIONS = QUESTION_BANK[currentRange].questions;
+  TIME_LIMIT_MIN = QUESTION_BANK[currentRange].timeMin || 30;
   order = shuffle(QUESTIONS.map((_, i) => i));
   choiceSets = order.map(qi => shuffle([QUESTIONS[qi].a, ...QUESTIONS[qi].d]));
   answers = new Array(order.length).fill(null);
