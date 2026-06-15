@@ -103,7 +103,10 @@
   .attempt summary { font-size: 13px; color: #e53e3e; cursor: pointer; }
   .attempt summary.all-ok { color: #38a169; list-style: none; cursor: default; }
   .wrong-list { font-size: 13px; margin-top: 6px; padding-left: 4px; }
-  .wrong-list div { padding: 3px 0; border-bottom: 1px dashed #edf2f7; }
+  .wrong-q { padding: 8px 0; border-bottom: 1px dashed #edf2f7; }
+  .wrong-sentence { font-weight: bold; color: #2d3748; word-break: break-word; }
+  .wrong-ja { color: #718096; font-size: 12px; margin: 2px 0; }
+  .wrong-ans { margin-top: 2px; }
   .wrong-list .w { font-weight: bold; color: #38a169; }
   .wrong-list .c { color: #e53e3e; }
   .empty-msg { text-align: center; color: #718096; padding: 20px 0; }
@@ -284,13 +287,30 @@ function renderHistory(results) {
       list.className = "wrong-list";
       wrongs.forEach(w => {
         const row = document.createElement("div");
+        row.className = "wrong-q";
+        // 問題文（保存されていれば、正解を入れた文を表示）
+        if (w.s) {
+          const sent = document.createElement("div");
+          sent.className = "wrong-sentence";
+          sent.textContent = w.s.replace("___", "【 " + w.word + " 】");
+          row.appendChild(sent);
+          if (w.ja) {
+            const ja = document.createElement("div");
+            ja.className = "wrong-ja";
+            ja.textContent = "（" + w.ja + "）";
+            row.appendChild(ja);
+          }
+        }
+        const ans = document.createElement("div");
+        ans.className = "wrong-ans";
         const wEl = document.createElement("span"); wEl.className = "w"; wEl.textContent = w.word;
         const cEl = document.createElement("span"); cEl.className = "c";
         cEl.textContent = w.chosen ? w.chosen : "未回答";
-        row.appendChild(document.createTextNode("正解 "));
-        row.appendChild(wEl);
-        row.appendChild(document.createTextNode(" ← 答えた: "));
-        row.appendChild(cEl);
+        ans.appendChild(document.createTextNode("正解 "));
+        ans.appendChild(wEl);
+        ans.appendChild(document.createTextNode(" ／ あなたの答え "));
+        ans.appendChild(cEl);
+        row.appendChild(ans);
         list.appendChild(row);
       });
       det.appendChild(list);

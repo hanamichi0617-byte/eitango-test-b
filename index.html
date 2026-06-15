@@ -468,7 +468,7 @@ function finishTest(byTimeout) {
     durationSec: Math.round(usedMs / 1000),
     timedOut: !!byTimeout,
     ts: Date.now(),
-    wrongs: wrongs.map(w => ({ no: w.no, word: w.q.a, chosen: w.chosen === null ? "" : w.chosen }))
+    wrongs: wrongs.map(w => ({ no: w.no, word: w.q.a, chosen: w.chosen === null ? "" : w.chosen, s: w.q.s, ja: w.q.ja }))
   });
 
   // 答え合わせ一覧
