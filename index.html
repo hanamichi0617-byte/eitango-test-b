@@ -174,7 +174,8 @@
       <div class="range-group" id="range-group">
         <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private ／ 50問・30分</span></button>
         <button class="range-opt" data-range="0501-550">0501〜550番<span class="small">laboratory 〜 congratulations ／ 50問・30分</span></button>
-        <button class="range-opt" data-range="1571-1580">複合名詞（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
+        <button class="range-opt" data-range="1571-1580">複合名詞①（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
+        <button class="range-opt" data-range="1581-1590">複合名詞②（1581〜1590）<span class="small">2語の熟語 ／ 10問・10分</span></button>
       </div>
       <button class="btn btn-primary" id="btn-start">テストを始める</button>
       <a class="btn btn-gray" href="./results.html">📊 これまでの成績を見る</a>
@@ -352,6 +353,22 @@ const QUESTION_BANK = {
   { s: "Your call may be recorded, and the recording could be used for ___ or training purposes.", ja: "お電話は録音される場合があり、その録音は品質管理や研修目的で使用されることがあります。", a: "quality control", d: ["quarterly report", "performance review", "purchase order"] },
   { s: "There was a presentation on the ___ at the meeting.", ja: "会議で四半期報告についてのプレゼンテーションがありました。", a: "quarterly report", d: ["quality control", "press conference", "performance review"] },
   { s: "Wool can be purchased from our farm store either as ___ or as yarn that we process on-site.", ja: "羊毛は当店で原材料として、または当社が店内で加工する糸として購入できます。", a: "raw material", d: ["product line", "purchase order", "public transportation"] }
+  ]
+ },
+ "1581-1590": {
+  label: "1581〜1590（複合名詞②）",
+  timeMin: 10,
+  questions: [
+  { s: "I have worked in ___ for 20 years.", ja: "私は不動産業で20年間働いてきました。", a: "real estate", d: ["retail store", "security guard", "shelf life"] },
+  { s: "Please include the position's ___ in your cover letter.", ja: "カバーレターにその職の参照番号を記載してください。", a: "reference number", d: ["serial number", "sales figure", "shelf life"] },
+  { s: "My company is committed to providing ___ to businesses like yours.", ja: "当社は御社のような企業に再生可能エネルギーを提供することに取り組んでいます。", a: "renewable energy", d: ["retail store", "real estate", "sales figure"] },
+  { s: "We use shipping containers to deliver large loads of furniture to ___.", ja: "私たちは家具を小売店に運ぶのに輸送用コンテナを使います。", a: "retail stores", d: ["shopping complexes", "security guards", "serial numbers"] },
+  { s: "Merfaa Fashions will release its ___ on Monday.", ja: "メルファー・ファッションズは月曜日に売上高を公表します。", a: "sales figures", d: ["reference numbers", "serial numbers", "security guards"] },
+  { s: "These decals are available from the ___ at the main gate.", ja: "これらのシールは正門の警備員から入手できます。", a: "security guard", d: ["retail store", "real estate", "reference number"] },
+  { s: "Can you tell me the phone's ___?", ja: "その電話の製造番号を教えてもらえますか。", a: "serial number", d: ["reference number", "sales figure", "shelf life"] },
+  { s: "We expect the new packaging will improve product ___.", ja: "新しい包装が製品の品質保持期間を延ばすと期待しています。", a: "shelf life", d: ["sales figure", "real estate", "retail store"] },
+  { s: "This company has built four ___ with Duggan's as the main tenant.", ja: "この会社はダガンズを主要テナントとする複合商業施設を4つ建てました。", a: "shopping complexes", d: ["retail stores", "security guards", "reference numbers"] },
+  { s: "We have developed a new ___ that will notify you of any disturbances.", ja: "私たちは異常を知らせる新しいスマートフォン用アプリを開発しました。", a: "smartphone application", d: ["renewable energy", "shopping complex", "reference number"] }
   ]
  }
 };
