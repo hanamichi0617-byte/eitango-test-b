@@ -132,6 +132,7 @@
         <select id="range-filter">
           <option value="">すべての範囲</option>
           <option value="0451-500">0451〜500（ahead〜private）</option>
+          <option value="0501-550">0501〜550（laboratory〜congratulations）</option>
           <option value="1571-1580">1571〜1580（複合名詞）</option>
         </select>
       </div>
@@ -180,7 +181,9 @@ function fmtDur(sec) {
 
 // 範囲の短い表示
 function rangeShort(r) {
-  return r.range === "1571-1580" ? "複合名詞" : "0451〜500";
+  if (r.range === "1571-1580") return "複合名詞";
+  if (r.range === "0501-550") return "0501〜550";
+  return "0451〜500";
 }
 
 function renderChart(results) {

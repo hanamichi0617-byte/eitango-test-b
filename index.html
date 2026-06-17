@@ -173,6 +173,7 @@
       <div class="range-label">出題する範囲をえらんでね</div>
       <div class="range-group" id="range-group">
         <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private ／ 50問・30分</span></button>
+        <button class="range-opt" data-range="0501-550">0501〜550番<span class="small">laboratory 〜 congratulations ／ 50問・30分</span></button>
         <button class="range-opt" data-range="1571-1580">複合名詞（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
       </div>
       <button class="btn btn-primary" id="btn-start">テストを始める</button>
@@ -279,6 +280,62 @@ const QUESTION_BANK = {
   { s: "For Delento Bakery's tenth ___, it gave away free cookies to the first 50 customers.", ja: "デレント・ベーカリーは10周年記念日に、先着50名に無料のクッキーを配りました。", a: "anniversary", d: ["reception", "banquet", "period"] },
   { s: "I was very impressed by the ___ advice I received on choosing a carpet.", ja: "カーペット選びについて受けた明快な助言にとても感心しました。", a: "clear", d: ["positive", "similar", "legal"] },
   { s: "Does Dr. Allen work at the hospital or at a ___ practice?", ja: "アレン先生は病院に勤めていますか、それとも個人で開業していますか。", a: "private", d: ["legal", "senior", "standard"] }
+  ]
+ },
+ "0501-550": {
+  label: "0501〜550（laboratory〜congratulations）",
+  timeMin: 30,
+  questions: [
+  { s: "Before leaving the ___, all technicians must wash their hands thoroughly.", ja: "研究所を出る前に、すべての技術者は手をよく洗わなければなりません。", a: "laboratory", d: ["refrigerator", "complex", "directory"] },
+  { s: "Returns must be made within 60 days of purchase and in original, unused ___.", ja: "返品は購入後60日以内に、元の未使用の状態で行わなければなりません。", a: "condition", d: ["term", "demand", "role"] },
+  { s: "I needed time to gain familiarity with my new ___.", ja: "私は新しい環境に慣れる時間が必要でした。", a: "environment", d: ["role", "status", "term"] },
+  { s: "It was helpful to connect with everyone before starting in my new ___.", ja: "新しい職務を始める前に、みんなとつながれて助かりました。", a: "role", d: ["term", "status", "panel"] },
+  { s: "When our facility became too small, we ___ for a bigger one.", ja: "施設が手狭になったので、私たちはより大きい所を探しました。", a: "searched", d: ["logged", "tracked", "exchanged"] },
+  { s: "We ___ do not want to lose customers due to our shortcomings.", ja: "私たちは自分たちの落ち度で確かに顧客を失いたくありません。", a: "certainly", d: ["exactly", "overseas", "despite"] },
+  { s: "The concern is whether the cost is reasonable ___ the amount of labor involved.", ja: "関わる労力を考慮すれば、費用が妥当かどうかが懸念です。", a: "considering", d: ["despite", "certainly", "exactly"] },
+  { s: "She prefers to shop for ___ online.", ja: "彼女は食料雑貨をオンラインで買うのを好みます。", a: "groceries", d: ["beverages", "fabrics", "artworks"] },
+  { s: "KCLN will enter into an agreement as soon as some of the ___ are renegotiated.", ja: "いくつかの条件が再交渉されればすぐ、KCLNは契約を結びます。", a: "terms", d: ["conditions", "roles", "demands"] },
+  { s: "Passengers who wish to ___ their economy tickets may do so online.", ja: "エコノミーのチケットを格上げしたい乗客はオンラインでできます。", a: "upgrade", d: ["exchange", "search", "track"] },
+  { s: "Wolff Foods has experienced a decrease in ___ for its beef products.", ja: "ウルフ食品は牛肉製品の需要の減少を経験しました。", a: "demand", d: ["status", "quantity", "attendance"] },
+  { s: "The ___ will be situated on the site of the old factory.", ja: "その複合施設は古い工場の跡地に建てられます。", a: "complex", d: ["laboratory", "inn", "directory"] },
+  { s: "We'd sell more units if we made our ___ available in brighter colors.", ja: "冷蔵庫をもっと明るい色で出せば、もっと売れるでしょう。", a: "refrigerator", d: ["complex", "fabric", "flooring"] },
+  { s: "This is a tour of the mansion, designed by renowned ___ Gerhard Schmidt.", ja: "これは有名な建築家ゲルハルト・シュミットが設計した邸宅のツアーです。", a: "architect", d: ["expert", "role", "status"] },
+  { s: "Argoroot Ltd. is working to create a steady supply chain ___ many challenges.", ja: "アルゴルート社は多くの困難にもかかわらず安定した供給網を作ろうとしています。", a: "despite", d: ["considering", "exactly", "certainly"] },
+  { s: "The tag information is printed on the ___ itself.", ja: "タグの情報は布地そのものに印刷されています。", a: "fabric", d: ["flooring", "artwork", "lane"] },
+  { s: "All lost articles are ___ in the Lost and Found inventory.", ja: "すべての遺失物は遺失物リストに記録されます。", a: "logged", d: ["searched", "tracked", "exchanged"] },
+  { s: "Ms. Le will complete her ___ at the George Cake Shop next week.", ja: "リーさんは来週ジョージ・ケーキ店でのインターンシップを終えます。", a: "internship", d: ["attendance", "billing", "finding"] },
+  { s: "Tomorrow I'll be presenting our ___ at a research conference.", ja: "明日、私は研究会議で私たちの研究結果を発表します。", a: "findings", d: ["terms", "demands", "roles"] },
+  { s: "I'm moving ___ in June, so I'd rather not move heavy furniture.", ja: "私は6月に海外に引っ越すので、重い家具は動かしたくありません。", a: "overseas", d: ["exactly", "certainly", "former"] },
+  { s: "Mr. Wijaya is reviewing résumés to select the candidate best ___ for the position.", ja: "ウィジャヤ氏はその職に最も適格な候補者を選ぶため履歴書を見ています。", a: "qualified", d: ["satisfied", "familiar", "electric"] },
+  { s: "If you are not ___ with your toothbrush, you may return it for a refund.", ja: "歯ブラシに満足していない場合は、返品して全額返金を受けられます。", a: "satisfied", d: ["qualified", "familiar", "dental"] },
+  { s: "Your automatic payments will begin with the next ___ on 1 March.", ja: "自動支払いは3月1日の次の請求書発送から始まります。", a: "billing", d: ["deposit", "finding", "demand"] },
+  { s: "I'd like to ___ these headphones for a different pair.", ja: "このヘッドホンを別のものと交換したいのですが。", a: "exchange", d: ["upgrade", "search", "track"] },
+  { s: "We were very ___ with your past work experience.", ja: "私たちはあなたの過去の職務経験にとても感銘を受けました。", a: "impressed", d: ["satisfied", "qualified", "familiar"] },
+  { s: "Lucie called to ask for a large ___ of watercolor paint.", ja: "ルーシーは大量の水彩絵の具を求めて電話してきました。", a: "quantity", d: ["demand", "deposit", "condition"] },
+  { s: "Tea ___ nice, especially since it's such a cold day.", ja: "こんなに寒い日なので、お茶はよさそうに聞こえます。", a: "sounds", d: ["tracks", "demands", "logs"] },
+  { s: "The company announced plans to build a new ___ plant next year.", ja: "その会社は来年、新しい組み立て工場を建てる計画を発表しました。", a: "assembly", d: ["laboratory", "refrigerator", "directory"] },
+  { s: "Can I get you another ___, or would you like the bill?", ja: "もう1杯飲み物をお持ちしましょうか、それともお会計にしますか。", a: "beverage", d: ["directory", "deposit", "term"] },
+  { s: "There is nothing more important to maintaining ___ health than brushing your teeth.", ja: "歯の健康を保つのに歯みがき以上に大切なものはありません。", a: "dental", d: ["electric", "familiar", "qualified"] },
+  { s: "My monthly ___ bill is paid automatically.", ja: "私の毎月の電気代の請求書は自動で支払われます。", a: "electric", d: ["dental", "familiar", "qualified"] },
+  { s: "A team of agricultural ___ will be brought together to improve crop harvests.", ja: "収穫を改善するため、農業の専門家チームが集められます。", a: "experts", d: ["architects", "directories", "roles"] },
+  { s: "Customers can check the ___ of their orders online.", ja: "お客様はオンラインで注文の状況を確認できます。", a: "status", d: ["term", "demand", "role"] },
+  { s: "The ___'s newest clothing store will specialize in formal wear.", ja: "その地域の最新の衣料品店は正装を専門に扱います。", a: "neighborhood", d: ["complex", "inn", "laboratory"] },
+  { s: "Information about the ___ in the lobby is available at the reception desk.", ja: "ロビーの美術品についての情報は受付で入手できます。", a: "artwork", d: ["fabric", "flooring", "panel"] },
+  { s: "I'm not very ___ with the city of Hartsville.", ja: "私はハーツビルの街をあまりよく知りません。", a: "familiar", d: ["qualified", "satisfied", "dental"] },
+  { s: "Clyden Bistro's ___ location is now occupied by Margie Sue's Bakery.", ja: "クライデン・ビストロの元の場所は今、マージー・スーのパン屋が使っています。", a: "former", d: ["familiar", "dental", "qualified"] },
+  { s: "The interview ___ felt that Dinah Ong fit the job perfectly.", ja: "面接の専門家団は、ダイナ・オングがその職に完璧に合うと感じました。", a: "panel", d: ["assembly", "internship", "status"] },
+  { s: "Using digital apps to help ___ fitness has become popular.", ja: "フィットネスを追跡するのに役立つアプリの利用が人気になっています。", a: "track", d: ["log", "search", "upgrade"] },
+  { s: "A one-time security ___ equal to one month's rent should be paid.", ja: "1か月分の家賃に相当する一度きりの保証金を支払う必要があります。", a: "deposit", d: ["billing", "exchange", "quantity"] },
+  { s: "Please confirm that your office phone number listed in the ___ is correct.", ja: "住所録に載っている会社の電話番号が正しいかご確認ください。", a: "directory", d: ["artwork", "finding", "status"] },
+  { s: "I know ___ where the art supply store is.", ja: "私はその画材店がどこにあるか正確に知っています。", a: "exactly", d: ["certainly", "overseas", "former"] },
+  { s: "The new line of tablets is more ___ than earlier versions.", ja: "新しいタブレットの製品ラインは以前の型より手頃な価格です。", a: "affordable", d: ["qualified", "familiar", "electric"] },
+  { s: "Claire will be out of the office because of her ___ at a corporate retreat.", ja: "クレアは社員研修への出席のため、会社を留守にします。", a: "attendance", d: ["internship", "deposit", "status"] },
+  { s: "The new wood ___ in our hotel's lobby looks really nice.", ja: "ホテルのロビーの新しい木の床張りはとてもすてきに見えます。", a: "flooring", d: ["fabric", "lighting", "lane"] },
+  { s: "Our newly renovated ___ offers simple, furnished suites.", ja: "新しく改装された当旅館は、家具付きのシンプルな部屋を提供します。", a: "inn", d: ["complex", "laboratory", "neighborhood"] },
+  { s: "Our driveway is two ___ wide and about 400 metres in length.", ja: "うちの私道は2車線分の幅で、長さは約400メートルです。", a: "lanes", d: ["roles", "panels", "terms"] },
+  { s: "Don't you think this room needs better ___?", ja: "この部屋はもっと良い照明が必要だと思いませんか。", a: "lighting", d: ["flooring", "fabric", "billing"] },
+  { s: "At Thimbleweeds, prices are fixed, so customers do not have to ___ about added costs.", ja: "シンブルウィーズでは価格が固定なので、客は追加費用を心配する必要がありません。", a: "worry", d: ["impress", "search", "track"] },
+  { s: "We would like to extend our ___ to Alicia Portalska.", ja: "私たちはアリシア・ポルタルスカに祝辞を述べたいと思います。", a: "congratulations", d: ["findings", "beverages", "groceries"] }
   ]
  },
  "1571-1580": {
