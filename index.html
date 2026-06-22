@@ -174,6 +174,7 @@
       <div class="range-group" id="range-group">
         <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private ／ 50問・30分</span></button>
         <button class="range-opt" data-range="0501-550">0501〜550番<span class="small">laboratory 〜 congratulations ／ 50問・30分</span></button>
+        <button class="range-opt" data-range="0551-600">0551〜600番<span class="small">draft 〜 collect ／ 50問・30分</span></button>
         <button class="range-opt" data-range="1571-1580">複合名詞①（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
         <button class="range-opt" data-range="1581-1590">複合名詞②（1581〜1590）<span class="small">2語の熟語 ／ 10問・10分</span></button>
       </div>
@@ -337,6 +338,62 @@ const QUESTION_BANK = {
   { s: "Don't you think this room needs better ___?", ja: "この部屋はもっと良い照明が必要だと思いませんか。", a: "lighting", d: ["flooring", "fabric", "billing"] },
   { s: "At Thimbleweeds, prices are fixed, so customers do not have to ___ about added costs.", ja: "シンブルウィーズでは価格が固定なので、客は追加費用を心配する必要がありません。", a: "worry", d: ["impress", "search", "track"] },
   { s: "We would like to extend our ___ to Alicia Portalska.", ja: "私たちはアリシア・ポルタルスカに祝辞を述べたいと思います。", a: "congratulations", d: ["findings", "beverages", "groceries"] }
+  ]
+ },
+ "0551-600": {
+  label: "0551〜600（draft〜collect）",
+  timeMin: 30,
+  questions: [
+  { s: "I just saw your ___ of the flyer and was about to call you.", ja: "チラシの下書きを見たところで、ちょうど電話しようとしていました。", a: "draft", d: ["profile", "entry", "analysis"] },
+  { s: "Our current clients range from major corporations to ___.", ja: "現在の顧客は大企業から個人まで多岐にわたります。", a: "individuals", d: ["consumers", "coworkers", "institutes"] },
+  { s: "I reviewed your request for ___ work for your rental units.", ja: "あなたの賃貸物件の造園作業の依頼を確認しました。", a: "landscaping", d: ["hardware", "profile", "departure"] },
+  { s: "Even though space was limited, the contractor ___ to fit in two sinks and a shower.", ja: "スペースは限られていましたが、業者は2つの洗面台とシャワーをなんとか収めました。", a: "managed", d: ["determined", "removed", "handled"] },
+  { s: "All dancers should have at least two years of ___ experience.", ja: "ダンサーは皆、少なくとも2年の事前の経験が必要です。", a: "prior", d: ["common", "ideal", "average"] },
+  { s: "I sent the pamphlet back because the part numbers were ___.", ja: "品番が誤っていたので、私はパンフレットを送り返しました。", a: "incorrect", d: ["reasonable", "common", "brief"] },
+  { s: "We are looking for a person who is ___, creative, and enjoys helping others.", ja: "私たちは忍耐強く、創造的で、人助けを楽しめる人を探しています。", a: "patient", d: ["willing", "confident", "aware"] },
+  { s: "Are they arriving at the domestic or international ___?", ja: "彼らは国内線と国際線のどちらのターミナルに到着しますか。", a: "terminal", d: ["destination", "departure", "distance"] },
+  { s: "He offered ___ on choosing the best fruit.", ja: "彼は最良の果物の選び方について助言をくれました。", a: "tips", d: ["rewards", "profits", "drafts"] },
+  { s: "I'm ___ what time I should expect them to come.", ja: "彼らが何時に来ると思っておけばよいだろうかと思っています。", a: "wondering", d: ["managing", "determining", "appearing"] },
+  { s: "The event planner ___ that Tuesday's events require additional chairs.", ja: "イベント企画者は、火曜日の催しには追加のいすが必要だと判断しました。", a: "determined", d: ["managed", "removed", "handled"] },
+  { s: "The company has announced its ___ into the United States market.", ja: "その会社はアメリカ市場への参入を発表しました。", a: "entry", d: ["departure", "distance", "profile"] },
+  { s: "Your customer service team ___ the problem with great professionalism.", ja: "あなたの顧客サービスチームは、その問題をとてもプロらしく対応しました。", a: "handled", d: ["managed", "determined", "removed"] },
+  { s: "Reservations can be rescheduled by calling at least one day before a scheduled ___.", ja: "予約は出発予定日の少なくとも1日前に電話すれば変更できます。", a: "departure", d: ["entry", "terminal", "destination"] },
+  { s: "___ staff are expected to provide top-quality service to patrons.", ja: "協会の職員は、利用者に最高品質のサービスを提供することが求められます。", a: "Institute", d: ["Hardware", "Departure", "Reward"] },
+  { s: "She already had a deep ___ of the store.", ja: "彼女はすでにその店についての深い知識を持っていました。", a: "knowledge", d: ["analysis", "profile", "distance"] },
+  { s: "We are using a ___ software program to create the reports.", ja: "私たちは報告書を作成するのに安全なソフトウェアを使っています。", a: "secure", d: ["common", "ideal", "brief"] },
+  { s: "If employees are ___ to work on the project this weekend, please let me know.", ja: "従業員が今週末このプロジェクトに進んで取り組んでくれるなら、教えてください。", a: "willing", d: ["patient", "confident", "aware"] },
+  { s: "The feedback shows that ___ are unhappy with the current design of our shoes.", ja: "その意見は、消費者が当社の靴の現在のデザインに不満を持っていることを示しています。", a: "consumers", d: ["individuals", "coworkers", "institutes"] },
+  { s: "Please address all correspondence to the new address listed on the ___ card.", ja: "すべての連絡は、同封されたカードに記載の新しい住所宛にお願いします。", a: "enclosed", d: ["prior", "single", "common"] },
+  { s: "All employees must ___ their food from the refrigerator before the holidays.", ja: "全従業員は休暇前に冷蔵庫から食べ物を取り除かなければなりません。", a: "remove", d: ["handle", "manage", "raise"] },
+  { s: "I have been the line cook serving ___ Cajun meals.", ja: "私は伝統的なケイジャン料理を出す調理担当をしてきました。", a: "traditional", d: ["common", "ideal", "average"] },
+  { s: "The site's slow response could be ___ by too many people buying at the same time.", ja: "サイトの反応の遅さは、多くの人が同時に購入することで引き起こされている可能性があります。", a: "caused", d: ["removed", "raised", "determined"] },
+  { s: "I'll really miss my colleagues here, but ___ it's the perfect job for me.", ja: "ここの同僚と別れるのは本当に寂しいですが、その他の点では私にとって完璧な仕事です。", a: "otherwise", d: ["properly", "overall", "prior"] },
+  { s: "Our ___ are recognized by the top chefs in the city.", ja: "当校の修了証は、市の一流シェフたちに認められています。", a: "certificates", d: ["profiles", "rewards", "drafts"] },
+  { s: "We provide customized software production and regular ___ maintenance.", ja: "私たちはカスタマイズしたソフト制作と定期的なハードウエアの保守を提供します。", a: "hardware", d: ["landscaping", "analysis", "knowledge"] },
+  { s: "With your support, we hope to ___ enough funds to buy art supplies.", ja: "皆様のご支援で、画材を買うのに十分な資金を集めたいと思っています。", a: "raise", d: ["remove", "handle", "determine"] },
+  { s: "He holds the company record for the highest sales in a ___ year.", ja: "彼はたった1年での最高売上という社内記録を持っています。", a: "single", d: ["common", "prior", "average"] },
+  { s: "Be ___ that the parking lot is very small, so arrive early.", ja: "駐車場がとても狭いことを知っておいてください。なので早めに来てください。", a: "aware", d: ["confident", "willing", "patient"] },
+  { s: "Note that once ___ is reached, registration will close.", ja: "定員に達すると、登録は締め切られますのでご注意ください。", a: "capacity", d: ["knowledge", "entry", "analysis"] },
+  { s: "Can you run an ___ to see if the benefit is worth the cost?", ja: "その利点が費用に見合うか、分析してもらえますか。", a: "analysis", d: ["entry", "profile", "draft"] },
+  { s: "We encourage associates with different points of view to find ___ ground.", ja: "私たちは異なる視点を持つ仲間が共通点を見つけるよう促しています。", a: "common", d: ["single", "prior", "ideal"] },
+  { s: "I am ___ that we can help you achieve your goals.", ja: "私たちがあなたの目標達成を手伝えると確信しています。", a: "confident", d: ["willing", "patient", "aware"] },
+  { s: "The winner will be ___ in the December issue of the magazine.", ja: "受賞者は雑誌の12月号で紹介されます。", a: "profiled", d: ["determined", "handled", "renewed"] },
+  { s: "Employees must store all tools ___ at the end of the shift.", ja: "従業員は勤務の終わりにすべての道具を正しく保管しなければなりません。", a: "properly", d: ["otherwise", "overall", "prior"] },
+  { s: "Have you ___ the office lease for another year?", ja: "オフィスの賃貸契約をもう1年更新しましたか。", a: "renewed", d: ["managed", "removed", "determined"] },
+  { s: "I am able to work effectively with ___, especially in a fast-paced environment.", ja: "私は特に速いペースの環境で、同僚と効果的に働くことができます。", a: "coworkers", d: ["consumers", "individuals", "institutes"] },
+  { s: "Pineville is the ___ location for your start-up business.", ja: "パインビルは、あなたの新規事業に理想的な立地です。", a: "ideal", d: ["common", "single", "average"] },
+  { s: "I like the jacket designs ___, but I'm concerned about the pockets.", ja: "ジャケットのデザインはおおむね気に入っていますが、ポケットが心配です。", a: "overall", d: ["properly", "otherwise", "prior"] },
+  { s: "We are ___ of our ten years of experience serving the community.", ja: "私たちは地域に尽くしてきた10年の経験を誇りに思っています。", a: "proud", d: ["confident", "aware", "willing"] },
+  { s: "My surname should ___ on the passenger ticket as Conner.", ja: "私の名字は搭乗券にConnerと表示されるはずです。", a: "appear", d: ["remove", "manage", "collect"] },
+  { s: "He is within driving ___ of the business forum.", ja: "彼はビジネスフォーラムから車で行ける距離にいます。", a: "distance", d: ["departure", "entry", "terminal"] },
+  { s: "Haverford Electric has the highest ___ margin in the energy sector.", ja: "ハバーフォード電力はエネルギー部門で最も高い利益率を誇ります。", a: "profit", d: ["reward", "analysis", "capacity"] },
+  { s: "I can't find any plane tickets at a ___ price.", ja: "妥当な価格の航空券がまったく見つかりません。", a: "reasonable", d: ["common", "ideal", "brief"] },
+  { s: "The ___ learner needs no more than 60 minutes to complete it.", ja: "平均的な学習者は、それを終えるのに60分もかかりません。", a: "average", d: ["common", "single", "ideal"] },
+  { s: "Her part in today's staff meeting will be ___.", ja: "今日のスタッフ会議での彼女の担当は短いものになります。", a: "brief", d: ["common", "prior", "single"] },
+  { s: "The program promotes study in ___ such as France and Italy.", ja: "そのプログラムはフランスやイタリアなどの目的地での学習を促進します。", a: "destinations", d: ["departures", "terminals", "distances"] },
+  { s: "There are several levels of sponsorship, but the ___ is 20,000 euros.", ja: "協賛にはいくつかの段階がありますが、最少額は2万ユーロです。", a: "minimum", d: ["average", "profit", "reward"] },
+  { s: "As with our airport service, ___ club members can book a shuttle ahead of time.", ja: "空港サービスと同様、リワードクラブの会員は事前にシャトルを予約できます。", a: "rewards", d: ["profits", "consumers", "certificates"] },
+  { s: "He wants to know the amount of revenue ___ over the last week.", ja: "彼は先週集められた収益の額を知りたがっています。", a: "collected", d: ["removed", "raised", "renewed"] }
   ]
  },
  "1571-1580": {
