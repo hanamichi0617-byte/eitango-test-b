@@ -175,6 +175,7 @@
         <button class="range-opt selected" data-range="0451-500">0451〜500番<span class="small">ahead 〜 private ／ 50問・30分</span></button>
         <button class="range-opt" data-range="0501-550">0501〜550番<span class="small">laboratory 〜 congratulations ／ 50問・30分</span></button>
         <button class="range-opt" data-range="0551-600">0551〜600番<span class="small">draft 〜 collect ／ 50問・30分</span></button>
+        <button class="range-opt" data-range="0601-650">0601〜650番<span class="small">donation 〜 forecast ／ 50問・30分</span></button>
         <button class="range-opt" data-range="1571-1580">複合名詞①（1571〜1580）<span class="small">2語の熟語 ／ 10問・10分</span></button>
         <button class="range-opt" data-range="1581-1590">複合名詞②（1581〜1590）<span class="small">2語の熟語 ／ 10問・10分</span></button>
         <button class="range-opt" data-range="1591-1600">複合名詞③（1591〜1600）<span class="small">2語の熟語 ／ 10問・10分</span></button>
@@ -395,6 +396,62 @@ const QUESTION_BANK = {
   { s: "There are several levels of sponsorship, but the ___ is 20,000 euros.", ja: "協賛にはいくつかの段階がありますが、最少額は2万ユーロです。", a: "minimum", d: ["average", "profit", "reward"] },
   { s: "As with our airport service, ___ club members can book a shuttle ahead of time.", ja: "空港サービスと同様、リワードクラブの会員は事前にシャトルを予約できます。", a: "rewards", d: ["profits", "consumers", "certificates"] },
   { s: "He wants to know the amount of revenue ___ over the last week.", ja: "彼は先週集められた収益の額を知りたがっています。", a: "collected", d: ["removed", "raised", "renewed"] }
+  ]
+ },
+ "0601-650": {
+  label: "0601〜650（donation〜forecast）",
+  timeMin: 30,
+  questions: [
+  { s: "We welcome ___ of books for all ages, both paperback and hardcover.", ja: "あらゆる年齢層向けの本の寄付を、ペーパーバックでもハードカバーでも歓迎します。", a: "donations", d: ["editions", "methods", "efforts"] },
+  { s: "___ intended to be open seven days a week, the store now opens only on weekdays.", ja: "元々は週7日の営業予定でしたが、その店は今では平日のみの営業です。", a: "Originally", d: ["Simply", "Absolutely", "Mostly"] },
+  { s: "Did you hear that a new ___ is opening on West Avenue?", ja: "ウエスト通りに新しい薬局ができると聞きましたか。", a: "pharmacy", d: ["charity", "auditorium", "luncheon"] },
+  { s: "The height of the desk can be changed by ___ flipping a latch.", ja: "その机の高さは、単に留め具を倒すだけで変えられます。", a: "simply", d: ["originally", "absolutely", "extremely"] },
+  { s: "___ cell demand is so strong that they need to increase production.", ja: "太陽電池の需要がとても強いので、彼らは生産を増やす必要があります。", a: "Solar", d: ["Athletic", "Custom", "Reliable"] },
+  { s: "We have a sales representative who ___ in commercial vehicles.", ja: "当社には商用車を専門にする営業担当者がいます。", a: "specializes", d: ["matches", "monitors", "contains"] },
+  { s: "A lot of the ___ apparel that's out there is too expensive.", ja: "出回っている運動用ウェアの多くは高すぎます。", a: "athletic", d: ["solar", "custom", "reliable"] },
+  { s: "Please inspect the ___ of the package and contact us with any questions.", ja: "荷物の中身をご確認のうえ、ご質問があればご連絡ください。", a: "contents", d: ["methods", "editions", "efforts"] },
+  { s: "She sent a check to pay for her ___ chair order.", ja: "彼女は特注のいすの注文の支払いのために小切手を送りました。", a: "custom", d: ["athletic", "solar", "bright"] },
+  { s: "The contact is a key source of information on energy-related ___.", ja: "その担当者は、エネルギー関連の事柄に関する重要な情報源です。", a: "matters", d: ["methods", "efforts", "editions"] },
+  { s: "We can schedule weekly or by-request laundry ___.", ja: "週ごと、またはご要望に応じた洗濯物の集荷を手配できます。", a: "pickup", d: ["pricing", "edition", "method"] },
+  { s: "I'm sure we can arrive at a ___ arrangement we'll both be happy with.", ja: "私たちは双方が満足できる価格設定の取り決めに到達できると思います。", a: "pricing", d: ["pickup", "content", "method"] },
+  { s: "Spaces can be arranged in ___ of individual chairs.", ja: "席は個々のいすの列に並べることができます。", a: "rows", d: ["editions", "methods", "stands"] },
+  { s: "I can check one bag for free, but I'm not sure what the ___ limit is.", ja: "かばんを1つ無料で預けられますが、重さの制限がいくつか分かりません。", a: "weight", d: ["pricing", "content", "edition"] },
+  { s: "My ___ career so far has been in sales.", ja: "これまでの私の経歴は全体が営業の仕事でした。", a: "whole", d: ["reliable", "alternative", "bright"] },
+  { s: "Please use the color printers only when ___ necessary.", ja: "カラープリンターは、絶対に必要なときだけ使ってください。", a: "absolutely", d: ["originally", "simply", "mostly"] },
+  { s: "The newest ___ will be available in bookstores next week.", ja: "最新版は来週、書店で入手できるようになります。", a: "edition", d: ["method", "content", "pickup"] },
+  { s: "Largely due to her ___, this year's festival attracted twice as many people.", ja: "主に彼女の努力のおかげで、今年の祭りは2倍の人を集めました。", a: "efforts", d: ["methods", "donations", "contents"] },
+  { s: "Your skills and experience ___ what we are looking for.", ja: "あなたの技能と経験は、私たちが求めているものに合致しています。", a: "match", d: ["monitor", "contain", "emphasize"] },
+  { s: "He practices sustainable fishing ___.", ja: "彼は持続可能な漁の手法を実践しています。", a: "methods", d: ["editions", "efforts", "contents"] },
+  { s: "Can we begin production this week, or should we revise the ___?", ja: "今週生産を始められますか、それとも予定表を見直すべきでしょうか。", a: "timeline", d: ["pricing", "reputation", "edition"] },
+  { s: "We'll need all the details before deciding if it's ___ the investment.", ja: "それが投資に値するか判断する前に、すべての詳細を知る必要があります。", a: "worth", d: ["reliable", "alternative", "custom"] },
+  { s: "The prime minister greeted foreign diplomats at a ___ today in London.", ja: "首相は今日ロンドンで、昼食会で外国の外交官を出迎えました。", a: "luncheon", d: ["pharmacy", "charity", "auditorium"] },
+  { s: "When you wear the watch, it ___ how much you exercise.", ja: "その時計を身につけると、どれくらい運動したかを監視してくれます。", a: "monitors", d: ["matches", "specializes", "contains"] },
+  { s: "Let's briefly discuss our ___ in developing our new device.", ja: "新しい機器の開発の進み具合について、手短に話し合いましょう。", a: "progress", d: ["effort", "method", "impact"] },
+  { s: "I was so happy with their ___ service that I used them again.", ja: "彼らの信頼できるサービスにとても満足したので、また利用しました。", a: "reliable", d: ["alternative", "athletic", "custom"] },
+  { s: "Will there be any ___ sessions for the training that I could attend?", ja: "私が参加できる、その研修の代わりの回はありますか。", a: "alternative", d: ["reliable", "athletic", "whole"] },
+  { s: "A portion of the proceeds is being donated to ___.", ja: "収益の一部は慈善団体に寄付されます。", a: "charity", d: ["pharmacy", "luncheon", "auditorium"] },
+  { s: "___ left unattended may be removed from the machines.", ja: "放置された洗濯物は、機械から取り出される場合があります。", a: "Laundry", d: ["Pricing", "Reputation", "Method"] },
+  { s: "We are an award-winning restaurant with a ___ that spans the Caribbean.", ja: "当店はカリブ海地域に名声が広がる、受賞歴のあるレストランです。", a: "reputation", d: ["timeline", "edition", "method"] },
+  { s: "Product ___ on the purchase order should match the dimensions of the furniture.", ja: "注文書の製品仕様は、家具の寸法と合致しているはずです。", a: "specifications", d: ["reputations", "editions", "methods"] },
+  { s: "She's ___ some boxes on the floor.", ja: "彼女は床にいくつかの箱を積み重ねています。", a: "stacking", d: ["matching", "monitoring", "containing"] },
+  { s: "The farmers set up ___ in the center of town to sell their flowers.", ja: "農家は花を売るために町の中心に屋台を設けました。", a: "stands", d: ["rows", "editions", "donations"] },
+  { s: "The café is quiet now, but it will be ___ by noon.", ja: "そのカフェは今は静かですが、正午までには混雑するでしょう。", a: "crowded", d: ["reliable", "bright", "whole"] },
+  { s: "The company aims to reduce the ___ on the environment.", ja: "その会社は環境への影響を減らすことを目指しています。", a: "impact", d: ["progress", "effort", "method"] },
+  { s: "A ___ wants to come in to talk to us about some machines.", ja: "ある販売員が、機械について私たちと話したいと言っています。", a: "salesperson", d: ["supervisor", "charity", "luncheon"] },
+  { s: "Any requests for time off should be addressed to the department ___.", ja: "休暇の申請はすべて、担当部署の管理者に伝えてください。", a: "supervisor", d: ["salesperson", "auditorium", "reputation"] },
+  { s: "When leaving the ___, please exit through the doors on the lower level.", ja: "講堂を出るときは、下の階のドアからお出かけください。", a: "auditorium", d: ["pharmacy", "charity", "luncheon"] },
+  { s: "Please tell us a little bit about your work ___.", ja: "あなたの職歴について少し教えてください。", a: "background", d: ["reputation", "progress", "method"] },
+  { s: "The rooms are ___ than we were expecting.", ja: "部屋は私たちが思っていたより明るいです。", a: "brighter", d: ["larger", "smaller", "longer"] },
+  { s: "The Web site ___ a comprehensive list of all the local businesses.", ja: "そのウェブサイトには、地元のすべての企業の総合的な一覧が含まれています。", a: "contains", d: ["matches", "monitors", "specializes"] },
+  { s: "We are ___ to welcome her to the company.", ja: "私たちは彼女を会社に迎えられて喜んでいます。", a: "delighted", d: ["reliable", "crowded", "bright"] },
+  { s: "He will ___ the importance of preparing talking points.", ja: "彼は話の要点を準備することの重要性を強調するでしょう。", a: "emphasize", d: ["monitor", "contain", "match"] },
+  { s: "Rents in desirable locations are often ___ high.", ja: "人気の立地の家賃は、しばしば非常に高いです。", a: "extremely", d: ["absolutely", "simply", "mostly"] },
+  { s: "The results are ___ in line with last month's results.", ja: "結果は大部分が先月の結果と一致しています。", a: "mostly", d: ["extremely", "absolutely", "simply"] },
+  { s: "First Airlines is ___ flight attendants to work on international routes.", ja: "ファースト航空は国際線で働く客室乗務員を新たに採用しています。", a: "recruiting", d: ["monitoring", "matching", "containing"] },
+  { s: "Despite the growing demand for ___, there is still a large supply available.", ja: "鋼鉄の需要が高まっているにもかかわらず、まだ十分な供給があります。", a: "steel", d: ["donation", "content", "weight"] },
+  { s: "He heard rumors that his editor was ___ firms.", ja: "彼は、編集者が会社を移ろうとしているといううわさを耳にしました。", a: "switching", d: ["matching", "stacking", "monitoring"] },
+  { s: "Full Future Organics has gone ___ groceries and added special features.", ja: "フルフューチャー・オーガニクスは食料品を超えて、特別な特徴を加えました。", a: "beyond", d: ["worth", "absolutely", "mostly"] },
+  { s: "I haven't made a shelter for the tractor yet, and rain has been ___ for today.", ja: "まだトラクター用の小屋を作っていないのに、今日は雨が予報されています。", a: "forecast", d: ["emphasized", "recruited", "monitored"] }
   ]
  },
  "1571-1580": {
